@@ -17,3 +17,4 @@ class TestWebScraper:
         scraper = WebScraper("https://example.com")
         result = scraper.fetch_page()
         assert result == True
+

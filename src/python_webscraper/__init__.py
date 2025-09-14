@@ -1,2 +1,3 @@
-if __name__ == "__main__":
-    print("Hello, World!")
+from .scraper import WebScraper
+
+__all__ = ["WebScraper"]
