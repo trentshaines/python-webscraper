@@ -4,8 +4,8 @@ START_URL = "https://os.phil-opp.com/"
 OUTPUT_PATH = "html-pages"
 
 def main() -> None:
-    scraper = WebScraper(OUTPUT_PATH)
-    scraper.scrapeV1(START_URL)
+    scraper = WebScraper(OUTPUT_PATH, START_URL)
+    scraper.scrapeV1()
 
 if __name__ == "__main__":
     main()
