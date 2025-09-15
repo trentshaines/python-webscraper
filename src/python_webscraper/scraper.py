@@ -131,7 +131,7 @@ class WebScraper:
             await asyncio.gather(*tasks)
 
     async def setup_loop(self) -> None:
-        sem = asyncio.Semaphore(50)  # Global semaphore to limit concurrent requests
+        sem = asyncio.Semaphore(10)  # Global semaphore to limit concurrent requests
         job = self.PageJob(self.base_url, "0")
         async with aiohttp.ClientSession() as session:
             await self.scrape_recursivelyV2(job, 0, sem, session)

@@ -1,21 +1,30 @@
 from .scraper import WebScraper
 import time
+import os
+from datetime import datetime
 
 START_URL = "http://www.jennifer.listgarten.com/"
-OUTPUT_PATH = "html-pages"
-OUTPUT_PATH_ASYNC = "html-pages-async"
+OUTPUT_BASE = "scraper-output"
 
 def main() -> None:
+    # Create timestamped output directories
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_v1 = os.path.join(OUTPUT_BASE, f"v1_{timestamp}")
+    output_v2 = os.path.join(OUTPUT_BASE, f"v2_{timestamp}")
+
+    os.makedirs(output_v1, exist_ok=True)
+
     print("Start Scraping V1 ")
     start = time.perf_counter()
-    scraper = WebScraper(OUTPUT_PATH, START_URL)
+    scraper = WebScraper(output_v1, START_URL)
     scraper.scrapeV1()
     end = time.perf_counter()
     print(f"Finished Scraping {scraper.scraped} Pages in {end - start:.4f} seconds")
 
+    # os.makedirs(output_v2, exist_ok=True)
     # print("Start Scraping V2")
     # start2 = time.perf_counter()
-    # scraper2 = WebScraper(OUTPUT_PATH_ASYNC, START_URL)
+    # scraper2 = WebScraper(output_v2, START_URL)
     # scraper2.scrapeV2()
     # end2 = time.perf_counter()
     # print(f"Finished Scraping {scraper2.scraped} Pages in {end2 - start2:.4f} seconds")
