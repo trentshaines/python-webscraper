@@ -1,11 +1,24 @@
 from .scraper import WebScraper
+import time
 
-START_URL = "https://os.phil-opp.com/"
+START_URL = "http://www.jennifer.listgarten.com/"
 OUTPUT_PATH = "html-pages"
+OUTPUT_PATH_ASYNC = "html-pages-async"
 
 def main() -> None:
+    print("Start Scraping V1 ")
+    start = time.perf_counter()
     scraper = WebScraper(OUTPUT_PATH, START_URL)
     scraper.scrapeV1()
+    end = time.perf_counter()
+    print(f"Finished Scraping {scraper.scraped} Pages in {end - start:.4f} seconds")
+
+    # print("Start Scraping V2")
+    # start2 = time.perf_counter()
+    # scraper2 = WebScraper(OUTPUT_PATH_ASYNC, START_URL)
+    # scraper2.scrapeV2()
+    # end2 = time.perf_counter()
+    # print(f"Finished Scraping {scraper2.scraped} Pages in {end2 - start2:.4f} seconds")
 
 if __name__ == "__main__":
     main()
